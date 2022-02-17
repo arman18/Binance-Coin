@@ -2,7 +2,7 @@ const template = document.querySelector('template');
 
 const container = document.body.querySelector('.container');
 
-let limit=1,symbol='AAVEUSDT',interval='1d',refresh=10000;
+let limit=1,symbol='AAVEUSDT',interval='3d',refresh=10000;
 let wrappers;
 let min = 99999999
 function doSort(){
