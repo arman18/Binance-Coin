@@ -27,7 +27,7 @@ span.name {
 }
 .container{
     display: grid;
-    grid-template-columns: repeat(15,auto);
+    grid-template-columns: repeat(13,106px);
     padding: 3px;
 }
 

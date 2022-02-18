@@ -2,14 +2,15 @@ const template = document.querySelector('template');
 
 const container = document.body.querySelector('.container');
 
-let limit=1,symbol='AAVEUSDT',interval='3d',refresh=10000;
+let limit=1,symbol='AAVEUSDT',interval='1d',refresh=10000;
 let wrappers;
 let min = 99999999
 function doSort(){
-    min = Math.ceil(Number(min));
+    min = Number(min);
     wrappers.forEach(element=>{
-        let num = Math.ceil(Number(element.querySelector('.change').innerText))
-        let order = num-min;
+        let num = Number(element.querySelector('.change').innerText)
+        let order = Math.ceil(num-min);
+        console.log(element.querySelector('.name').innerText,order,num,min)
         element.style.order = order.toLocaleString();
     })
 }
@@ -29,6 +30,8 @@ function createUI(data){
 }
 
 function getMinMax(value){
+    value = Number(value)
+    //console.log(value,min, value<min)
     if(value<min) min = value;
 }
 
@@ -39,10 +42,12 @@ function loadSingleData(url,element){
         return response.json();
         }).then(function (data) {
             element.querySelector('.price').innerText = data[0][4];
+            let data4 = Number(data[0][4]), data1 = Number(data[0][1]);
+
             const diff = data[0][4] - data[0][1]
             if(diff<0) {
                 element.querySelector('.change').innerText = (diff/data[0][4]*100).toFixed(2);
-                getMinMax((diff/data[0][4]*100).toFixed(2));
+                getMinMax(((data4-data1)/data4*100).toFixed(2));
                 element.querySelector('.change').classList.remove('green');
                 element.querySelector('.change').classList.add('red');
 
@@ -51,7 +56,7 @@ function loadSingleData(url,element){
             }
             else {
                 element.querySelector('.change').innerText = (diff/data[0][1]*100).toFixed(2);
-                getMinMax((diff/data[0][1]*100).toFixed(2));
+                getMinMax(((data4-data1)/data1*100).toFixed(2));
                 element.querySelector('.change').classList.remove('red');
                 element.querySelector('.change').classList.add('green');
                 element.querySelector('.parcent').classList.remove('red');
