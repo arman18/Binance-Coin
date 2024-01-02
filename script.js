@@ -45,6 +45,7 @@ function loadSingleData(url,element){
             //let data4 = Number(data[0][4]), data1 = Number(data[0][1]);
 			// 4. currrent, 3. last, 2. first, 1. base(previous started)
             const diff = (data[0][4] - data[0][1])/data[0][3]*(data[0][1]-data[0][3])/data[0][3];
+	    console.log((data[0][4] - data[0][1]),data[0][3],(data[0][4] - data[0][1])/data[0][3],(data[0][1]-data[0][3]),(data[0][1]-data[0][3])/data[0][3],diff);
             if(diff<0) {
                 //element.querySelector('.change').innerText = (diff/data[0][4]*100).toFixed(2);
                 //getMinMax(((data4-data1)/data4*100).toFixed(2));
