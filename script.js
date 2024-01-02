@@ -49,8 +49,8 @@ function loadSingleData(url,element){
             if(diff<0) {
                 //element.querySelector('.change').innerText = (diff/data[0][4]*100).toFixed(2);
                 //getMinMax(((data4-data1)/data4*100).toFixed(2));
-                element.querySelector('.change').innerText = (diff).toFixed(2);
-                getMinMax(diff).toFixed(2);
+                element.querySelector('.change').innerText = diff.toFixed(2);
+                getMinMax(diff.toFixed(2));
                 element.querySelector('.change').classList.remove('green');
                 element.querySelector('.change').classList.add('red');
 
@@ -60,8 +60,8 @@ function loadSingleData(url,element){
             else {
                 // element.querySelector('.change').innerText = (diff/data[0][1]*100).toFixed(2);
                 // getMinMax(((data4-data1)/data1*100).toFixed(2));
-                element.querySelector('.change').innerText = (diff).toFixed(2);
-                getMinMax(diff).toFixed(2);
+                element.querySelector('.change').innerText = diff.toFixed(2);
+                getMinMax(diff.toFixed(2));
                 element.querySelector('.change').classList.remove('red');
                 element.querySelector('.change').classList.add('green');
                 element.querySelector('.parcent').classList.remove('red');
