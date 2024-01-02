@@ -94,6 +94,7 @@ function loadData(url){
         document.querySelector('.btn').onclick = thread;
     }).catch(function (err) {
         console.warn('Something went wrong. loading all data', err);
+	loadData(url);
     });
 }
 
