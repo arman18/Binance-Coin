@@ -42,14 +42,14 @@ function loadSingleData(url,element){
         return response.json();
         }).then(function (data) {
             element.querySelector('.price').innerText = data[0][4];
-            let data4 = Number(data[0][4]), data1 = Number(data[0][1]);
+            //let data4 = Number(data[0][4]), data1 = Number(data[0][1]);
 			// 4. currrent, 3. last, 2. first, 1. base(previous started)
             const diff = (data[0][4] - data[0][1])/data[0][3]*(data[0][1]-data[0][3])/data[0][3];
             if(diff<0) {
                 //element.querySelector('.change').innerText = (diff/data[0][4]*100).toFixed(2);
                 //getMinMax(((data4-data1)/data4*100).toFixed(2));
                 element.querySelector('.change').innerText = (diff).toFixed(2);
-                getMinMax(diff).toFixed(2));
+                getMinMax(diff).toFixed(2);
                 element.querySelector('.change').classList.remove('green');
                 element.querySelector('.change').classList.add('red');
 
@@ -60,7 +60,7 @@ function loadSingleData(url,element){
                 // element.querySelector('.change').innerText = (diff/data[0][1]*100).toFixed(2);
                 // getMinMax(((data4-data1)/data1*100).toFixed(2));
                 element.querySelector('.change').innerText = (diff).toFixed(2);
-                getMinMax(diff).toFixed(2));
+                getMinMax(diff).toFixed(2);
                 element.querySelector('.change').classList.remove('red');
                 element.querySelector('.change').classList.add('green');
                 element.querySelector('.parcent').classList.remove('red');
