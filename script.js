@@ -22,7 +22,8 @@ function createUI(data){
     const wrapper = template.content.cloneNode(true);
     wrapper.querySelector('.name').innerText = data.name;
     wrapper.querySelector('.link').href = `https://www.binance.com/en/trade/${data.symbol}`;
-    wrapper.querySelector('.price').innerText = data.price;
+    wrapper.querySelector('.price').innerText = (Number(data.price)).toFixed(5);
+    wrapper.querySelector('.bprice').innerText = "N/A";
     wrapper.querySelector('.change').innerText = data.dayChange;
     wrapper.querySelector('.wrapper').dataset.symbol=data.symbol;
     wrapper.querySelector('.tags').innerText=data.tags?.join() || "N/A";
@@ -45,7 +46,7 @@ function loadSingleData(url,element){
             //let data4 = Number(data[0][4]), data1 = Number(data[0][1]);
 			// 4. currrent, 3. last, 2. first, 1. base(previous started)
             const diff = (Number(data[0][4]) - Number(data[0][1]))/Number(data[0][3])*(Number(data[0][1])-Number(data[0][3]))/Number(data[0][3])*10000;
-	    // console.log((data[0][4] - data[0][1]),data[0][3],(data[0][4] - data[0][1])/data[0][3],(data[0][1]-data[0][3]),(data[0][1]-data[0][3])/data[0][3],diff);
+	    element.querySelector('.bprice').innerText = (Number(data[0][1])).toFixed(5);
             if(diff<0) {
                 //element.querySelector('.change').innerText = (diff/data[0][4]*100).toFixed(2);
                 //getMinMax(((data4-data1)/data4*100).toFixed(2));
