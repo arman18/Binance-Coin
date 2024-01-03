@@ -22,7 +22,7 @@ function createUI(data){
     const wrapper = template.content.cloneNode(true);
     wrapper.querySelector('.name').innerText = data.name;
     wrapper.querySelector('.link').href = `https://www.binance.com/en/trade/${data.symbol}`;
-    wrapper.querySelector('.price').innerText = (Number(data.price)).toFixed(5);
+    wrapper.querySelector('.price').innerText = "N/A";
     wrapper.querySelector('.bprice').innerText = "N/A";
     wrapper.querySelector('.change').innerText = data.dayChange;
     wrapper.querySelector('.wrapper').dataset.symbol=data.symbol;
@@ -42,15 +42,15 @@ function loadSingleData(url,element){
     fetch(url).then(function (response) {
         return response.json();
         }).then(function (data) {
-            element.querySelector('.price').innerText = (Number(data[0][4])).toFixed(5);
+            element.querySelector('.price').innerText = (Number(data[0][1])).toFixed(5); // base price left one
             //let data4 = Number(data[0][4]), data1 = Number(data[0][1]);
-			// 4. currrent, 3. last, 2. first, 1. base(previous started)
+	    // 4. currrent, 3. last, 2. first, 1. base(previous started)
             const diff = (Number(data[0][4]) - Number(data[0][1]))/Number(data[0][3])*(Number(data[0][1])-Number(data[0][3]))/Number(data[0][3])*10000;
-	    element.querySelector('.bprice').innerText = (Number(data[0][1])).toFixed(5);
+	    element.querySelector('.bprice').innerText = (Number(data[0][4])).toFixed(5); // current price right one
             if(diff<0) {
                 //element.querySelector('.change').innerText = (diff/data[0][4]*100).toFixed(2);
                 //getMinMax(((data4-data1)/data4*100).toFixed(2));
-                element.querySelector('.change').innerText = diff.toFixed(2);
+                element.querySelector('.change').innerText = diff.toFixed(2); 
                 getMinMax(diff.toFixed(2));
                 element.querySelector('.change').classList.remove('green');
                 element.querySelector('.change').classList.add('red');
