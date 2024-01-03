@@ -42,7 +42,7 @@ function loadSingleData(url,element){
     fetch(url).then(function (response) {
         return response.json();
         }).then(function (data) {
-            element.querySelector('.price').innerText = data[0][4];
+            element.querySelector('.price').innerText = (Number(data[0][4])).toFixed(5);
             //let data4 = Number(data[0][4]), data1 = Number(data[0][1]);
 			// 4. currrent, 3. last, 2. first, 1. base(previous started)
             const diff = (Number(data[0][4]) - Number(data[0][1]))/Number(data[0][3])*(Number(data[0][1])-Number(data[0][3]))/Number(data[0][3])*10000;
